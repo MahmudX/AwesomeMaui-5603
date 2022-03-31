@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             Title="{Binding Title}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cc="clr-namespace:Educial.Resources.CustomControls;assembly=Educial"
+             xmlns:vm="clr-namespace:Educial.ViewModels.Dashboard.Result;assembly=Educial"
+             xmlns:academic="clr-namespace:Models.Academic;assembly=Models"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             x:Class="Educial.Views.Portal.Result.ResultArchive">
+
+    <ContentPage.BindingContext>
+        <vm:ResultArchiveViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView 
+            Padding="20">
+            <StackLayout>
+                <Label FontSize="Title" FontAttributes="Bold" 
+                   Text="Your Result Archive"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding SemesterResults}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="academic:SemesterResult">
+                            <cc:Accordion Title="{Binding Semester.Name}">
+                                <cc:Accordion.AccordionContentView>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding ResultBySubject}"
+                                          >
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="academic:ResultBySubject">
+
+                                                <StackLayout Margin="0,0,0,10">
+                                                    <Label Text="{Binding Subject.Name}"></Label>
+                                                    <Label FontSize="Body" FontAttributes="Bold">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Grade}"/>
+                                                                <Span Text=", "/>
+                                                                <Span Text="{Binding Point}"/>
+                                                                <Span Text=" out of "/>
+                                                                <Span Text="{Binding Subject.Credit}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </cc:Accordion.AccordionContentView>
+                                <cc:Accordion.IndicatorView>
+                                    <Label Style="{StaticResource FontIconText}"
+                                           Text="{DynamicResource IconChevronDown}"/>
+                                </cc:Accordion.IndicatorView>
+                            </cc:Accordion>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

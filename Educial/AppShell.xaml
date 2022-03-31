@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Educial.Views"
+       
+       xmlns:result="clr-namespace:Educial.Views.Portal.Result;assembly=Educial"
+       xmlns:payment="clr-namespace:Educial.Views.Portal.Payment;assembly=Educial"
+       xmlns:pages="clr-namespace:Educial"
+       Title="Educial"
+       x:Class="Educial.AppShell">
+    <!--xmlns:podcast="clr-namespace:Educial.Views.Podcast;assembly=Educial"
+    xmlns:social="clr-namespace:Educial.Views.Social;assembly=Educial"
+    -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" 
+                   BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" 
+                   BasedOn="{StaticResource BaseStyle}" />
+
+
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="SF Pro Text"/>
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.FontFamily" Value="SF"></Setter>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" 
+                                            Value="{DynamicResource PrimaryColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" 
+                                            Property="Label.FontFamily" 
+                                            Value="SF Pro Text"/>
+                                    <Setter TargetName="FlyoutItemLabel" 
+                                            Property="Label.TextColor" 
+                                            Value="{DynamicResource PrimaryColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <FontImageSource x:Key="IconDashboardDarkImg"
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconViewDashboard}"/>
+            <FontImageSource x:Key="IconBoltImg"
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconLightningBolt}"/>
+            <FontImageSource x:Key="IconPaymentImg"
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconPaymentCard}"/>
+            <FontImageSource x:Key="IconChatImg"
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconChatBubbles}"/>
+            <FontImageSource x:Key="IconFeedImg" 
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconDuplexLandscapeOneSided}"/>
+            <FontImageSource x:Key="IconGroupDarkImg" 
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconGroup}"/>
+            <FontImageSource x:Key="IconTaskViewDarkImg" 
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconTaskView}"/>
+            <FontImageSource x:Key="IconSettingsDarkImg" 
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconSettings}"/>
+            <FontImageSource x:Key="IconSignOutDarkImg" 
+                             Color="Black"
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconSignOut}"/>
+            <FontImageSource x:Key="IconContactImg" 
+                             FontFamily="Segoe Fluent Icons"
+                             Glyph="{StaticResource IconContact}"/>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+
+    <FlyoutItem Title="Social" Icon="{StaticResource IconGroup}">
+        <Tab Icon="{StaticResource IconChatImg}" Title="Chat">
+            <ShellContent Route="ChatPage" ContentTemplate="{DataTemplate pages:SebastianInfoPage}" />
+        </Tab>
+        <Tab Title="Contact" Icon="{StaticResource IconContactImg}">
+            <ShellContent Route="ContactPage" ContentTemplate="{DataTemplate pages:SebastianInfoPage}" />
+        </Tab>
+        <Tab Title="Stories" Icon="{StaticResource IconFeedImg}">
+            <ShellContent Route="FeedPage" ContentTemplate="{DataTemplate pages:SebastianInfoPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Portal" Icon="{StaticResource IconViewDashboard}">
+        <Tab Title="Performance" Icon="{StaticResource IconBoltImg}">
+            <ShellContent Title="Current" Route="CurrentResult" 
+                          ContentTemplate="{DataTemplate result:CurrentStatus}"/>
+            <ShellContent Title="Archive" Route="ResultArchive" 
+                          ContentTemplate="{DataTemplate result:ResultArchive}"/>
+        </Tab>
+        <Tab Title="Payment" Icon="{StaticResource IconPaymentImg}">
+            <ShellContent Route="PaymentHistory" ContentTemplate="{DataTemplate payment:PaymentHistory}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="To Do" Icon="{StaticResource IconTaskView}">
+        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    </FlyoutItem>
+
+
+    <!--<FlyoutItem Title="Podcast" Icon="{StaticResource IconStreaming}">
+        <Tab>
+            <ShellContent Title="Latest" Route="PodcastLatest" ContentTemplate="{DataTemplate podcast:PodcastLatest}"></ShellContent>
+            <ShellContent Title="History" Route="PodcastList" ContentTemplate="{DataTemplate podcast:PodcastList}"></ShellContent>
+        </Tab>
+    </FlyoutItem>-->
+
+
+    <FlyoutItem Title="Setting" Icon="{StaticResource IconSettings}">
+        <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </FlyoutItem>
+    <!--<MenuItem Text="Logout" IconImageSource="{StaticResource IconSignOutDarkImg}"
+              StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked"/>-->
+
+
+    <TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{DynamicResource PrimaryColor}"
+                  HeightRequest="100">
+                <Label Text="Educial"
+                       TextColor="White"
+                       FontSize="Title"
+                       FontFamily="Helvetica"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.FlyoutFooter>
+        <Frame HasShadow="False" BackgroundColor="{DynamicResource PrimaryColor}">
+            <StackLayout Padding="0,0,0,5">
+                <Label Text="©️ Pienteger"
+                       TextColor="GhostWhite"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </Frame>
+    </Shell.FlyoutFooter>
+
+    <Shell.ItemTemplate>
+        <DataTemplate x:Key="FlyoutTemplate">
+            <Grid x:Name="FlyoutItemLayout"
+                  HeightRequest="{x:OnPlatform Android=50}"
+                  ColumnSpacing="{x:OnPlatform UWP=0}"
+                  RowSpacing="{x:OnPlatform UWP=0}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" >
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource PrimaryTextColor}" />
+                                    <Setter TargetName="FlyoutItemIcon" Property="Label.TextColor" Value="{StaticResource PrimaryTextColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="#ffffff" />
+                                    <Setter TargetName="FlyoutItemIcon" Property="Label.TextColor" Value="#ffffff" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{x:OnPlatform Android=54, iOS=50, UWP=Auto}" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--<Image x:Name="FlyoutItemImage"
+                       Source="{Binding FlyoutIcon}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="{x:OnPlatform Default=Center, UWP=Start}"
+               HeightRequest="{x:OnPlatform Android=24, iOS=22, UWP=16}"
+               WidthRequest="{x:OnPlatform Android=24, iOS=22, UWP=16}">
+                    <Image.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.Platforms>
+                                <On Platform="UWP"
+                            Value="12,0,12,0" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Image.Margin>
+                </Image>-->
+                <Label x:Name="FlyoutItemIcon"
+                       Text="{Binding FlyoutIcon}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="{x:OnPlatform Default=Center, UWP=Start}"
+                       FontSize="{x:OnPlatform Android=24, iOS=Small}"
+                       Style="{StaticResource FontIconText}">
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.Platforms>
+                                <On Platform="UWP"
+                                    Value="12,0,12,0" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.Margin>
+
+                </Label>
+                <Label x:Name="FlyoutItemLabel"
+                       Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontSize="{x:OnPlatform Android=14, iOS=Small}"
+                       HorizontalOptions="{x:OnPlatform UWP=Start}"
+                       HorizontalTextAlignment="{x:OnPlatform UWP=Start}"
+                       FontAttributes="{x:OnPlatform iOS=Bold}"
+                       VerticalTextAlignment="Center">
+                    <Label.TextColor>
+                        <OnPlatform x:TypeArguments="Color">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="#D2000000" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.TextColor>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="20, 0, 0, 0" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.Margin>
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="Helvetica" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+</Shell>

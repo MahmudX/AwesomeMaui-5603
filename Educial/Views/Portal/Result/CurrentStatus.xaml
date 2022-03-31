@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:vm="clr-namespace:Educial.ViewModels.Dashboard.Result;assembly=Educial"
+             xmlns:academic="clr-namespace:Models.Academic;assembly=Models"
+             x:Class="Educial.Views.Portal.Result.CurrentStatus"
+             Padding="20"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:CurrentStatusViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Current Streak"
+                VerticalOptions="Start" 
+                FontFamily="SF Pro Text"
+                FontSize="Title"
+                HorizontalOptions="Start" />
+            <!--<ScrollView Margin="0,10,0,0">-->
+            <Grid RowDefinitions="Auto,*">
+                <StackLayout>
+                    <Frame CornerRadius="167"   
+                               WidthRequest="167"
+                               HeightRequest="167"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               BackgroundColor="{DynamicResource NavigationBarColor}">
+                        <Frame CornerRadius="84"
+                                   WidthRequest="166"
+                                   HasShadow="False"
+                                   BackgroundColor="{DynamicResource PageBackgroundColor}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   HeightRequest="166">
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="3.67" 
+                                       HorizontalOptions="Center"
+                                       FontSize="50"></Label>
+                                <Label Text="3.44 (avg)" VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       FontSize="Subtitle"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <CollectionView ItemsSource="{Binding ResultBySubjects}"
+                                        SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="academic:ResultBySubject">
+                                <Frame BackgroundColor="Transparent"
+                                           HasShadow="False"
+                                           CornerRadius="0">
+                                    <StackLayout>
+                                        <Label FontSize="Body" Text="{Binding Subject.Name}"/>
+                                        <Label FontSize="Body" FontAttributes="Bold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Grade}"/>
+                                                    <Span Text=", "/>
+                                                    <Span Text="{Binding Point}"/>
+                                                    <Span Text=" out of "/>
+                                                    <Span Text="{Binding Subject.Credit}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Grid>
+            <!--</ScrollView>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

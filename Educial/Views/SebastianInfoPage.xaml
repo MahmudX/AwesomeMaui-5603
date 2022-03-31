@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Educial.SebastianInfoPage"
+             Title="SebastianInfoPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout Orientation="Vertical" Margin="20">
+        <Label Text="Sebastian"
+           FontSize="24"
+               TextColor="{DynamicResource PrimaryTextColor}"
+           FontAttributes="Bold"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="CenterAndExpand" />
+        <Image Source="sebastian.png"
+           HeightRequest="250"
+           WidthRequest="250"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="CenterAndExpand" />
+        <Label Text="Author"
+           FontSize="12"
+           FontAttributes="Bold"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="CenterAndExpand" />
+        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+           FontSize="12"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>

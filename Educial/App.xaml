@@ -1,0 +1,62 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Educial"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:Educial.Converters;assembly=Educial"
+             x:Class="Educial.App">
+    <Application.Resources>
+        <!--<xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />-->
+        <converters:DateHumanizerConverter x:Key="DateHumanizerConverter"/>
+        <converters:ImageResourceValueConverter x:Key="ImageResourceConverter" />
+        <converters:IsNullConverter x:Key="IsNullValueConverter"/>
+        <converters:TextTrimConverter x:Key="TextTrimConverter" />
+        <converters:MsToSecondConverter x:Key="MsToSecondConverter" />
+        <ResourceDictionary Source="Resources/Themes/LightTheme.xaml" />
+        
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
+        </Style>
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
+        </Style>
+        <Style TargetType="FontImageSource">
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons"></Setter>
+        </Style>
+
+        <Style TargetType="Label" x:Key="HelveticaBold">
+            <Setter Property="FontFamily" Value="Helvetica Bold"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="Sf">
+            <Setter Property="FontFamily" Value="SF Pro Text"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="SfBold">
+            <Setter Property="FontFamily" Value="SF Pro Text Bold"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="SfSemiBold">
+            <Setter Property="FontFamily" Value="SF Pro Text Semibold"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="Helvetica">
+            <Setter Property="FontFamily" Value="Helvetica"></Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#332196F3" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
